@@ -1,5 +1,6 @@
 package com.github.charleslzq.loghub.annotation;
 
+import com.aliyun.openservices.log.producer.LogProducer;
 import com.github.charleslzq.loghub.config.LogHubProducerProperties;
 import com.github.charleslzq.loghub.producer.LogHubProducerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class LogHubProducerConfiguration {
     @Bean
     public LogHubProducerFactory logHubProducerFactory() {
         return new LogHubProducerFactory(logHubProducerProperties);
+    }
+
+    @Bean
+    public LogProducer logProducer(LogHubProducerFactory factory) {
+        return factory.getProducer();
     }
 }
