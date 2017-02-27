@@ -16,13 +16,16 @@ public class LogHubProducerFactory {
     }
 
     public LogProducer getProducer() {
-        if (producer != null) {
-            return producer;
+        if (producer == null) {
+            synchronized (this) {
+                if (producer == null) {
+                    producer = new LogProducer(logHubProducerProperties.generateProducerConfig());
+                    logHubProducerProperties.getProjects().forEach(
+                            logHubProjectConfig -> producer.setProjectConfig(logHubProjectConfig.generateProjectConfig())
+                    );
+                }
+            }
         }
-        producer = new LogProducer(logHubProducerProperties.generateProducerConfig());
-        logHubProducerProperties.getProjects().forEach(
-                logHubProjectConfig -> producer.setProjectConfig(logHubProjectConfig.generateProjectConfig())
-        );
         return producer;
     }
 
