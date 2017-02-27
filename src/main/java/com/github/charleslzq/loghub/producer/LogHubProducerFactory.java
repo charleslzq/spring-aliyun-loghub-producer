@@ -29,11 +29,16 @@ public class LogHubProducerFactory {
         return producer;
     }
 
-    public <T> LogHubTemplate<T> createTemplate(String project, String store, LogItemConverter<T> converter) {
-        return new LogHubTemplate<>(this.getProducer(), project, store, converter);
-    }
-
-    public LogHubTemplate createTemplate(String project, String store) {
-        return new LogHubTemplate(this.getProducer(), project, store, null);
+    public <T> LogHubTemplate<T> createTemplate(String project,
+                                                String store,
+                                                String source,
+                                                String defaultTopic,
+                                                LogItemConverter<T> converter) {
+        return new LogHubTemplate<>(this.getProducer(),
+                project,
+                store,
+                source,
+                defaultTopic,
+                converter);
     }
 }
