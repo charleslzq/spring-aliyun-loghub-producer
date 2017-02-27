@@ -2,6 +2,7 @@ package com.github.charleslzq.loghub.producer;
 
 import com.aliyun.openservices.log.producer.ILogCallback;
 import com.aliyun.openservices.log.producer.LogProducer;
+import com.github.charleslzq.loghub.converter.DefaultLogItemConverter;
 import com.github.charleslzq.loghub.converter.LogItemConverter;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class LogHubTemplate<T> {
         this.logProducer = logProducer;
         this.project = project;
         this.store = store;
-        this.converter = converter;
+        this.converter = converter == null?new DefaultLogItemConverter<T>():converter;
     }
 
     public void send(String topic, String source, List<T> items, ILogCallback callback) {
