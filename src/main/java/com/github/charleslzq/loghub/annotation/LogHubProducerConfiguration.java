@@ -43,7 +43,7 @@ public class LogHubProducerConfiguration {
             LogHubTemplateConfig config = entry.getValue();
             String source = config.getSource() == SourceType.HOST_IP ? hostIp : hostName;
             try {
-                LogItemConverter converter = config.getConverter().newInstance();
+                LogItemConverter converter = (LogItemConverter) Class.forName(config.getConverter()).newInstance();
                 BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(LogHubTemplate.class);
                 builder.addConstructorArgValue(factory.getProducer())
                         .addConstructorArgValue(config.getProject())
@@ -55,6 +55,8 @@ public class LogHubProducerConfiguration {
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
