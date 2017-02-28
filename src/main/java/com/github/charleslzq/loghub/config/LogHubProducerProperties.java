@@ -4,7 +4,10 @@ import com.aliyun.openservices.log.producer.ProducerConfig;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Charles on 2/27/2017.
@@ -14,7 +17,8 @@ import java.util.List;
 )
 @Data
 public class LogHubProducerProperties {
-    private List<LogHubProjectConfig> projects;
+    private List<LogHubProjectConfig> projects = new ArrayList<>();
+    private Map<String, LogHubTemplateConfig> templates = new HashMap<>();
     private int packageTimeOutMs = 3000;
     private int logPerPackage = 4096;
     private int bytesPerPackage = 5 * 1024 * 1024;

@@ -2,7 +2,6 @@ package com.github.charleslzq.loghub.producer;
 
 import com.aliyun.openservices.log.producer.ILogCallback;
 import com.aliyun.openservices.log.producer.LogProducer;
-import com.github.charleslzq.loghub.converter.DefaultLogItemConverter;
 import com.github.charleslzq.loghub.converter.LogItemConverter;
 
 import java.util.List;
