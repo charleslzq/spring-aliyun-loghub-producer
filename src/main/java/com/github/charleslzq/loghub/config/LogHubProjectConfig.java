@@ -8,12 +8,25 @@ import lombok.Data;
  */
 @Data
 public class LogHubProjectConfig {
-    private String project;
-    private String endpoint;
-    private String accessId;
-    private String accessKey;
+	/**
+	 * the project name
+	 */
+	private String project;
+	/**
+	 * the endpoint to access alibaba loghub service
+	 */
+	private String endpoint;
+	/**
+	 * the accessId of which holds the appropriate authority
+	 */
+	private String accessId;
+	/**
+	 * the accessKey of which holds the appropriate authority
+	 */
+	private String accessKey;
 
-    public ProjectConfig generateProjectConfig() {
-        return new ProjectConfig(project, endpoint, accessId, accessKey);
-    }
+
+	public ProjectConfig generateProjectConfig() {
+		return new ProjectConfig(project, endpoint, accessId, accessKey);
+	}
 }
