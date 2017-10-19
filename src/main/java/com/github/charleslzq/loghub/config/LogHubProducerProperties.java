@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by Charles on 2/27/2017.
  */
 @ConfigurationProperties(
-		prefix = "spring.ali.log-hub.producer"
+		prefix = "ali.log-hub.producer"
 )
 @Data
 public class LogHubProducerProperties {
